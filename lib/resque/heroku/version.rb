@@ -1,5 +1,5 @@
 module Resque
   module Heroku
-    VERSION = "0.1.0"
+    VERSION = "1.27.4"
   end
 end
