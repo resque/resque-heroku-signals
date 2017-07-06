@@ -1,12 +1,6 @@
 require 'resque'
 require "resque/heroku/version"
 
-module Resque
-  module Heroku
-
-  end
-end
-
 # https://github.com/resque/resque/issues/1559#issuecomment-310908574
 Resque::Worker.class_eval do
   def unregister_signal_handlers

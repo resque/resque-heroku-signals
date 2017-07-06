@@ -1,5 +1,5 @@
 module Resque
-  module Heroku
+  module HerokuSignals
     VERSION = "1.27.4"
   end
 end

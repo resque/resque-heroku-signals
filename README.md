@@ -1,4 +1,4 @@
-# resque-heroku
+# resque-heroku-signals
 
 This gem patches resque to be compatible with the Heroku platform. Specifically it
 modifies the UNIX signaling logic to be compatible with the Heroku worker shutdown process.
@@ -12,7 +12,7 @@ The version of this gem corresponds to the version of Resque that it is compatib
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'resque-heroku'
+gem 'resque-heroku-signals'
 ```
 
 ## Example Procfile
