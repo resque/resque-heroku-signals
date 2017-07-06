@@ -1,8 +1,11 @@
-# Resque::Heroku
+# resque-heroku
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/resque/heroku`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem patches resque to be compatible with the Heroku platform. Specifically it
+modifies the UNIX signaling logic to be compatible with the Heroku worker shutdown process.
 
-TODO: Delete this and the text above, and describe your gem
+[Read this GitHub comment for more context & details.](https://github.com/resque/resque/issues/1559)
+
+The version of this gem corresponds to the version of Resque that it is compatible with.
 
 ## Installation
 
@@ -12,30 +15,18 @@ Add this line to your application's Gemfile:
 gem 'resque-heroku'
 ```
 
-And then execute:
+## Example Procfile
 
-    $ bundle
+```
+worker: env QUEUE=* TERM_CHILD=1 INTERVAL=0.1 RESQUE_PRE_SHUTDOWN_TIMEOUT=20 RESQUE_TERM_TIMEOUT=8 bundle exec rake resque:work
 
-Or install it yourself as:
+```
 
-    $ gem install resque-heroku
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/iloveitaly/resque-heroku.
-
+* Total time should be less than 0
+* `RESQUE_PRE_SHUTDOWN_TIMEOUT` time a job has to finish up before the `TermException` exception is raised
+* `RESQUE_TERM_TIMEOUT` time the job has to cleanup & save state
+* `INTERVAL` seconds to wait between jobs
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
