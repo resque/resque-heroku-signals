@@ -19,13 +19,18 @@ gem 'resque-heroku-signals'
 
 ```
 worker: env QUEUE=* TERM_CHILD=1 INTERVAL=0.1 RESQUE_PRE_SHUTDOWN_TIMEOUT=20 RESQUE_TERM_TIMEOUT=8 bundle exec rake resque:work
-
 ```
 
-* Total time should be less than 0
 * `RESQUE_PRE_SHUTDOWN_TIMEOUT` time a job has to finish up before the `TermException` exception is raised
 * `RESQUE_TERM_TIMEOUT` time the job has to cleanup & save state
+* Total shutdown time should be less than 30s. This is the time [Heroku gives you to cleanup before a `SIGKILL` is issued](https://devcenter.heroku.com/articles/dynos#shutdown)
 * `INTERVAL` seconds to wait between jobs
+
+Also, make you don't buffer logs: import log messages could fail to push to stdout during the worker shutdown process:
+
+```ruby
+$stdout.sync = true
+```
 
 ## License
 
