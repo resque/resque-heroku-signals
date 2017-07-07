@@ -15,6 +15,8 @@ Add this line to your application's Gemfile:
 gem 'resque-heroku-signals'
 ```
 
+Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque. Issue a PR if this is not compatible with the version of resque you are using. 
+
 ## Example Procfile
 
 ```
