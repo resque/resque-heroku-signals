@@ -6,16 +6,16 @@ Resque::Worker.class_eval do
   def unregister_signal_handlers
     trap('TERM') do
       trap('TERM') do
-        puts "[resque-heroku] received second term signal, throwing term exception"
+        log_with_severity :info, "[resque-heroku] received second term signal, throwing term exception"
 
         trap('TERM') do
-          puts "[resque-heroku] third or more time receiving TERM, ignoring"
+          log_with_severity :info, "[resque-heroku] third or more time receiving TERM, ignoring"
         end
 
         raise Resque::TermException.new("SIGTERM")
       end
 
-      puts "[resque-heroku] received first term signal from heroku, ignoring"
+      log_with_severity :info, "[resque-heroku] received first term signal from heroku, ignoring"
 
     end
 
