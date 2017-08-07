@@ -12,7 +12,7 @@ The version of this gem corresponds to the version of Resque that it is compatib
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'resque-heroku-signals'
+gem 'resque-heroku-signals', require: 'resque/heroku-signals'
 ```
 
 Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque. Issue a PR if this is not compatible with the version of resque you are using. 
