@@ -1,5 +1,7 @@
+require 'rubygems'
 require "bundler/setup"
-require "resque/heroku-signals"
+
+Bundler.require
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
