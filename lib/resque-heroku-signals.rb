@@ -1,5 +1,4 @@
 require 'resque'
-require "resque/heroku/version"
 
 # https://github.com/resque/resque/issues/1559#issuecomment-310908574
 Resque::Worker.class_eval do
