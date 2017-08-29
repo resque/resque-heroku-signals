@@ -8,10 +8,7 @@ class DummyJob
   end
 end
 
-RSpec.describe Resque::HerokuSignals do
-  it "has a version number" do
-    expect(Resque::HerokuSignals::VERSION).not_to be nil
-  end
+RSpec.describe 'resque-heroku-signals' do
 
   context "Signal handling" do
     before do
