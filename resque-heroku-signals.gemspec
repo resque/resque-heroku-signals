@@ -1,16 +1,14 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'resque/heroku/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "resque-heroku-signals"
-  spec.version       = Resque::HerokuSignals::VERSION
+  spec.version       = '1.27.4.2'
   spec.authors       = ["Michael Bianco"]
   spec.email         = ["mike@suitesync.io"]
 
   spec.summary       = "Patch resque to be compatible with the Heroku platform"
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/iloveitaly/resque-heroku-signals"
   spec.license       = "MIT"
 
