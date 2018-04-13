@@ -28,7 +28,7 @@ worker: env QUEUE=* TERM_CHILD=1 INTERVAL=0.1 RESQUE_PRE_SHUTDOWN_TIMEOUT=20 RES
 * Total shutdown time should be less than 30s. This is the time [Heroku gives you to cleanup before a `SIGKILL` is issued](https://devcenter.heroku.com/articles/dynos#shutdown)
 * `INTERVAL` seconds to wait between jobs
 
-Also, make you don't buffer logs: import log messages could fail to push to stdout during the worker shutdown process:
+Also, make you don't buffer logs: important log messages could fail to push to stdout during the worker shutdown process:
 
 ```ruby
 $stdout.sync = true
