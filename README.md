@@ -15,7 +15,15 @@ Add this line to your application's Gemfile:
 gem 'resque-heroku-signals'
 ```
 
-Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque. Issue a PR if this is not compatible with the version of resque you are using. 
+Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque. Issue a PR if this is not compatible with the version of resque you are using.
+
+## Determining When a Process Will Shutdown
+
+Heroku sends a `TERM` signal to a process before hard killing it. If your job communicates with slow external APIs, you may want to make sure you have enough time to receive and handle the response from the external system before executing the API requests.
+
+Ideally, using an idempotency key with each external API request is the best way to ensure that a given API request only runs. However, depending on your application logic this may not be practical and knowing if a process will be terminated in less than 30s by Heroku is a useful tool.
+
+Use `Resque.heroku_will_terminate?` to determine if Heroku will terminate your process within 30s. 
 
 ## Example Procfile
 
