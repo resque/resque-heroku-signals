@@ -8,7 +8,7 @@ class DummyJob
   end
 end
 
-def LongCleanupJob
+class LongCleanupJob
   def self.perform(uuid)
     sleep 2
 
@@ -110,8 +110,21 @@ RSpec.describe 'resque-heroku-signals' do
       @worker.shutdown
       thread.join
 
-      # if worker will terminate, then the file is written
-      expect(File.exist?(@uuid)).to eq(true)
+      # if worker will terminate, then the file is written if the heroku flag is set
+      expect(File.exist?(@uuid)).to be true
+      File.delete(@uuid)
+      
+      # however, this should not effect the flag on the main process or the next
+      expect(Resque.heroku_will_terminate?).to be false
+
+      thread = Thread.new { @worker.work(0.1) { puts "hello" } }
+
+      Resque::Job.create(:jobs, LongCleanupJob, @uuid)
+
+      @worker.shutdown
+      thread.join
+
+      expect(File.exist?(@uuid)).to be false
     end
   end
 end
