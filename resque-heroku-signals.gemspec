@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "resque-heroku-signals"
-  spec.version       = '1.27.4.3'
+  spec.version       = '2.0.0'
   spec.authors       = ["Michael Bianco"]
   spec.email         = ["mike@suitesync.io"]
 
