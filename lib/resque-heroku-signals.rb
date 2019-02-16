@@ -8,6 +8,8 @@ Resque.class_eval do
   end
 end
 
+# before bumping resque dependency, check to ensure implementation has not changed
+#   https://github.com/resque/resque/blame/v2.0.0/lib/resque/worker.rb#L406
 # https://github.com/resque/resque/issues/1559#issuecomment-310908574
 Resque::Worker.class_eval do
   def unregister_signal_handlers
