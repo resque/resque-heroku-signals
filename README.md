@@ -15,7 +15,7 @@ Add this line to your application's Gemfile:
 gem 'resque-heroku-signals'
 ```
 
-Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque. Issue a PR if this is not compatible with the version of resque you are using.
+Since this gem monkeypatches the Heroku worker the `gemspec` is locked to a `x.x.x` version of Resque to ensure the monkeypatched logic is compatible with any changes in the original Resque logic. Issue a PR if this is not compatible with the version of resque you are using.
 
 ## Determining When a Process Will Shutdown
 
