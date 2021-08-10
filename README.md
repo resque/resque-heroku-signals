@@ -1,3 +1,6 @@
+[![Gem Version](https://badge.fury.io/rb/resque-heroku-signals.svg)](https://badge.fury.io/rb/resque-heroku-signals)
+[![Ruby](https://github.com/iloveitaly/resque-heroku-signals/actions/workflows/ci.yml/badge.svg)](https://github.com/iloveitaly/resque-heroku-signals/actions/workflows/ci.yml)
+
 # resque-heroku-signals
 
 This gem patches resque to be compatible with the Heroku platform. Specifically it
@@ -23,7 +26,7 @@ Heroku sends a `TERM` signal to a process before hard killing it. If your job co
 
 Ideally, using an idempotency key with each external API request is the best way to ensure that a given API request only runs. However, depending on your application logic this may not be practical and knowing if a process will be terminated in less than 30s by Heroku is a useful tool.
 
-Use `Resque.heroku_will_terminate?` to determine if Heroku will terminate your process within 30s. 
+Use `Resque.heroku_will_terminate?` to determine if Heroku will terminate your process within 30s.
 
 ## Example Procfile
 
