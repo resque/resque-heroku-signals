@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "resque-heroku-signals"
-  spec.version       = '2.1.0'
+  spec.version       = '2.2.0'
   spec.authors       = ["Michael Bianco"]
   spec.email         = ["mike@mikebian.co"]
 
   spec.summary       = "Patch resque to be compatible with the Heroku platform"
-  spec.homepage      = "https://github.com/iloveitaly/resque-heroku-signals"
+  spec.homepage      = "https://github.com/resque/resque-heroku-signals"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # strict resque dependency is intentional
-  spec.add_dependency "resque", "2.1.0"
+  spec.add_dependency "resque", "2.2.0"
 
   spec.add_development_dependency "bundler", "~> 2.2"
   spec.add_development_dependency "rake", "~> 13.0"
