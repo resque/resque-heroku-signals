@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Michael Bianco"]
   spec.email         = ["mike@mikebian.co"]
 
-  spec.summary       = "Patch resque to be compatible with the Heroku platform"
+  spec.summary       = "Patch resque to be compatible with Heroku"
   spec.homepage      = "https://github.com/resque/resque-heroku-signals"
   spec.license       = "MIT"
 
@@ -18,6 +18,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  gem.metadata['rubygems_mfa_required'] = 'true'
 
   # strict resque dependency is intentional
   spec.add_dependency "resque", "2.2.1"
