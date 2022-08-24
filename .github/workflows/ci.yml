@@ -10,7 +10,7 @@ jobs:
           - 6379:6379
     strategy:
       matrix:
-        ruby-version: ['3.0', 2.7, 2.6, 2.5, 2.4]
+        ruby-version: ['3.0', '2.7']
 
     steps:
       - uses: actions/checkout@v3
