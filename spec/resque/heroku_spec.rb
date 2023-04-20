@@ -56,13 +56,16 @@ RSpec.describe 'resque-heroku-signals' do
       FileUtils.remove(@uuid) if File.exist?(@uuid)
     end
 
-    it "ignores the first TERM signal" do
+    it "ignores any TERM signal" do
       thread = Thread.new do
         @worker.work(1)
       end
 
       Resque::Job.create(:jobs, DummyJob, @uuid)
-      Process.kill("TERM", get_job_pid(@worker))
+      3.times do
+        Process.kill("TERM", get_job_pid(@worker))
+        sleep 0.1
+      end
 
       wait condition: ->() { !File.exist?(@uuid) }
       @worker.shutdown
@@ -71,7 +74,7 @@ RSpec.describe 'resque-heroku-signals' do
       expect(File.exist?(@uuid)).to eq(true)
     end
 
-    it "ignores the first TERM signal but raises an exception on the second signal" do
+    it "raises with INT" do
       thread = Thread.new { @worker.work(0.1) { puts "hello" } }
 
       Resque::Job.create(:jobs, DummyJob, @uuid)
@@ -79,12 +82,7 @@ RSpec.describe 'resque-heroku-signals' do
 
       expect(pid).to_not be_nil
 
-      Process.kill(:TERM, pid)
-
-
-      # It seems like the second signal isn't received without this
-      sleep 0.1
-      Process.kill(:TERM, pid)
+      Process.kill("INT", pid)
 
       @worker.shutdown
       thread.join
@@ -113,7 +111,7 @@ RSpec.describe 'resque-heroku-signals' do
       # if worker will terminate, then the file is written if the heroku flag is set
       expect(File.exist?(@uuid)).to be true
       File.delete(@uuid)
-      
+
       # however, this should not effect the flag on the main process or the next
       expect(Resque.heroku_will_terminate?).to be false
 
