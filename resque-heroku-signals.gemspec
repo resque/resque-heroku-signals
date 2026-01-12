@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "resque-heroku-signals"
-  spec.version       = '2.7.0'
+  spec.version       = '3.0.0'
   spec.authors       = ["Michael Bianco"]
   spec.email         = ["mike@mikebian.co"]
 
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   # strict resque dependency is intentional
-  spec.add_dependency "resque", "2.7.0"
+  spec.add_dependency "resque", "3.0.0"
 
   spec.add_development_dependency "bundler", "~> 2.2"
   spec.add_development_dependency "rake", "~> 13.0"
