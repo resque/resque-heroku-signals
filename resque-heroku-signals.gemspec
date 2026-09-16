@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   # strict resque dependency is intentional
   spec.add_dependency "resque", "3.0.3"
 
-  spec.add_development_dependency "bundler", "~> 2.2"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.10"
 end
